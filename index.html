@@ -713,30 +713,39 @@
         }
 
         function handleAdvancedDetailsSubmit(event) {
-            event.preventDefault();
-            const clientName = document.getElementById('form-name').value;
-            const clientProfession = document.getElementById('form-profession').value;
-            const clientPhone = document.getElementById('form-intl-phone').value;
-            const targetAddress = document.getElementById('form-address').value;
-            const targetWork = document.getElementById('form-work').value;
+    event.preventDefault();
+    
+    // ફોર્મમાંથી અસલી ડેટા લોડ કરવો
+    const formData = {
+        nriName: document.getElementById('form-name').value,
+        profession: document.getElementById('form-profession').value,
+        abroadPhone: document.getElementById('form-intl-phone').value,
+        planSelected: currentSelectedPlan,
+        vatanAddress: document.getElementById('form-address').value,
+        elderScopeIssues: document.getElementById('form-work').value
+    };
+
+    // બેકેન્ડ સર્વર સાથે કનેક્ટ કરવાની પ્રોસેસ (Live Fetch API)
+    fetch('http://localhost:5000/api/bookings/activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
             const node = document.getElementById('success-dynamic-text-node');
-            
             node.innerHTML = `
-                <div class="text-left bg-slate-50 p-4 rounded-xl text-xs space-y-1.5 my-2 border border-gray-200">
-                    <p class="font-bold border-b border-gray-200 pb-1 text-slate-700 uppercase tracking-wider"><i class="fa-solid fa-id-card mr-1"></i> Profile Activation Overview:</p>
-                    <p><strong>NRI Name:</strong> ${clientName}</p>
-                    <p><strong>Profession:</strong> ${clientProfession}</p>
-                    <p><strong>Abroad Phone:</strong> ${clientPhone}</p>
-                    <p><strong>Plan Selected:</strong> ${currentSelectedPlan}</p>
-                    <p><strong>Vatan Address:</strong> ${targetAddress}</p>
-                    <p><strong>Elder Scope Issues:</strong> ${targetWork}</p>
-                </div>
                 <p class="text-xs text-slate-700 mt-2 font-medium">
-                    <span class="text-en">Your information has been logged inside Vatan Care database. We will connect on WhatsApp within 12 hours.</span>
-                    <span class="text-gu">તમારી બધી એડવાન્સ્ડ વિગતો અને પસંદ કરેલ પ્લાનની વિગત વતન કેર (Vatan Care) ઓપરેશન હબમાં સેવ થઈ ગઈ છે. કાંસા ચોકડી ઓફિસના ઓપરેશન હેડ ૧૨ કલાકમાં સંપર્ક કરશે.</span>
+                    <span class="text-en">Your profile has been securely logged into the database.</span>
+                    <span class="text-gu">તમારી બધી વિગતો ડેટાબેઝમાં કાયમી સ્ટોર થઈ ગઈ છે. કાંસા ચોકડી ઓફિસથી મેનેજર સંપર્ક કરશે.</span>
                 </p>
             `;
             navigateTo('success');
+        }
+    })
+    .catch(error => console.error('Error connecting to backend:', error));
+}
         }
 
         function handleFormSubmit(event) {
