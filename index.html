@@ -35,16 +35,16 @@
             box-shadow: 0 30px 60px -15px rgb(0 0 0 / 0.08), 0 15px 25px -10px rgb(0 0 0 / 0.05);
             border-color: #f59e0b;
         }
-        .animate-btn {
+        .premium-btn {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
-        .animate-btn:hover:not(:disabled) {
+        .premium-btn:hover:not(:disabled) {
             box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
             transform: scale(1.01);
         }
-        .animate-btn::after {
+        .premium-btn::after {
             content: '';
             position: absolute;
             top: -50%;
@@ -55,7 +55,7 @@
             transform: rotate(30deg);
             transition: none;
         }
-        .animate-btn:hover:not(:disabled)::after {
+        .premium-btn:hover:not(:disabled)::after {
             left: 130%;
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -90,13 +90,17 @@
                     <span class="text-gu">મુખ્ય વહીવટી મથક: કાંસા ચોકડી હબ, વિસનગર (મહેસાણા)</span>
                 </span>
             </div>
-            <div class="flex flex-wrap justify-center items-center gap-6 font-bold">
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 font-bold">
                 <a href="tel:+61450920249" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 text-amber-400">
                     <i class="fa-solid fa-phone"></i> AUS Desk: +61 450 920 249
                 </a>
                 <span class="text-slate-800 hidden md:inline">|</span>
+                <a href="https://wa.me/918511620300?text=Hello%20Vatan%20Care,%20I%20want%20to%20inquire%20about%20NRI%20Services." target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-emerald-400">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> IND Care: +91 85116 20300
+                </a>
+                <span class="text-slate-800 hidden md:inline">|</span>
                 <span class="text-emerald-400 flex items-center gap-1.5">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> 
+                    <i class="fa-solid fa-shield-halved text-xs"></i> 
                     <span class="text-en">NRI Verified WhatsApp Connection Active</span>
                     <span class="text-gu">વોટ્સએપ ઓન-ગ્રાઉન્ડ લાઈન ચાલુ છે</span>
                 </span>
@@ -141,7 +145,7 @@
                     <button id="btn-lang-gu" onclick="setLanguage('gu')" class="px-4 py-2 rounded-lg transition-all text-slate-600">ગુજરાતી</button>
                 </div>
 
-                <button onclick="navigateTo('pricing')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-6 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-md transition-all hidden sm:block animate-btn">
+                <button onclick="navigateTo('pricing')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-6 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-md transition-all hidden sm:block premium-btn">
                     <span class="text-en">View Retainers</span><span class="text-gu">પ્લાન વિગત</span>
                 </button>
             </div>
@@ -174,7 +178,7 @@
                          </div>
 
                         <div class="flex flex-wrap gap-4 pt-4">
-                            <button onclick="navigateTo('services')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-8 py-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg transition-all animate-btn">
+                            <button onclick="navigateTo('services')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-8 py-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg transition-all premium-btn">
                                 <span class="text-en">Open All 9 Services Portal <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
                                 <span class="text-gu">૯ સેવાઓનું મુખ્ય પોર્ટલ ઓપન કરો <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
                             </button>
@@ -388,7 +392,7 @@
             <div class="text-center pb-24">
                 <button onclick="navigateTo('pricing')" class="bg-slate-950 text-amber-400 font-black px-10 py-5 rounded-xl text-xs uppercase tracking-widest shadow-lg transition-all border border-slate-800 animate-btn">
                     <span class="text-en">Proceed to Subscription Pricing <i class="fa-solid fa-chevron-right ml-1.5"></i></span>
-                    <span class="text-gu">અમારી ફિક્સ પ્લાનની કિંમતો જુઓ <i class="fa-solid fa-chevron-right ml-1.5"></i></span>
+                    <span class="text-gu">અમારી ફિક્સ  પ્લાનની કિંમતો જુઓ <i class="fa-solid fa-chevron-right ml-1.5"></i></span>
                 </button>
             </div>
         </div>
@@ -661,7 +665,6 @@
                 errorNode.classList.remove('hidden');
                 phoneField.focus();
                 return;
-                return;
             }
 
             // 2. PARSE BOUND DYNAMIC SCHEMA OBJECT
@@ -680,7 +683,8 @@
             loadingText.classList.remove('hidden');
 
             // ACTIVE STABLE TUNNEL ROUTER GATEWAY
-const tunnelUrl = 'https://vatancare-backend-api.onrender.com/api/bookings/activate';
+            const tunnelUrl = 'https://vatancare-backend-api.onrender.com/api/bookings/activate';
+            
             // 4. INITIATE SECURE ASYNCHRONOUS NETWORK HANDSHAKE OPERATIONS
             fetch(tunnelUrl, {
                 method: 'POST',
@@ -708,8 +712,8 @@ const tunnelUrl = 'https://vatancare-backend-api.onrender.com/api/bookings/activ
                             <p><strong>Target Address Location:</strong> ${formData.vatanAddress}</p>
                         </div>
                         <p class="text-xs text-slate-700 mt-2 font-medium">
-                            <span class="text-en">All 5 inputs have been successfully written into your laptop backend database.</span>
-                            <span class="text-gu">તમારો પાંચેય ફિલ્ડનો મોડ્યુલર ડેટા વિસનગર ઓફિસ સર્વર (લેપટોપ) માં સફળતાપૂર્વક લોક થઈ ગયો છે!</span>
+                            <span class="text-en">All 5 inputs have been successfully written into your cloud backend database footprint safely.</span>
+                            <span class="text-gu">તમારો પાંચેય ફિલ્ડનો મોડ્યુલર ડેટા વિસનગર ક્લાઉડ સર્વર (રેન્ડર) માં સફળતાપૂર્વક લોક થઈ ગયો છે!</span>
                         </p>
                     `;
                     navigateTo('success');
@@ -717,7 +721,7 @@ const tunnelUrl = 'https://vatancare-backend-api.onrender.com/api/bookings/activ
             })
             .catch(error => {
                 console.error('Fatal Network Intercept:', error);
-                alert('Could not connect to Vatan Care Server. Ensure your laptop terminal is active on port 5000 and ngrok tunnel routing points are verified!');
+                alert('Could not connect to Vatan Care Server. Ensure your live Render web service is running and endpoints are verified!');
             })
             .finally(() => {
                 // HARD SYSTEM RESET LOADING ENGINE SWITCH
